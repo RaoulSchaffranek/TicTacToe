@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>TicTacToe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+    <link rel="canonical">
+    <link rel="me" href="https://twitter.com/1UnitedPower">
+  </head>
+  <body>
+    <div id="tictactoe"></div>
+    <footer>
+      Written with <a class="icon-elm" href="https://elm-lang.org">elm-lang</a> and ♡ by Raoul Schaffranek
+      <div class="social-buttons">
+        <a class="github-button" href="https://github.com/RaoulSchaffranek/TicTacToe/fork" data-icon="octicon-repo-forked" data-count-href="/RaoulSchaffranek/TicTacToe/network"
+          data-count-api="/repos/RaoulSchaffranek/TicTacToe#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork RaoulSchaffranek/TicTacToe on GitHub">Fork</a>
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet/?text=TicTacToe written with Elm"></a>
+      </div>
+    </footer>
+  </body>
+  <script type="text/javascript" src="/TicTacToe.js"></script>
+  <script type="text/javascript">
+    var hostNode = document.getElementById('tictactoe');
+    Elm.Main.embed(hostNode);
+  </script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        t._e = [];
+        t.ready = function(f) {
+          t._e.push(f);
+        };
+        return t;
+      }(document, "script", "twitter-wjs"));
+    </script>
+</html>

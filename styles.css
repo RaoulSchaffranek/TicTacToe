@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: hsl(210, 29%, 29%);
+  color: white;
+}
+
+.ttt-status h1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 100;
+  font-size: 17vmin;
+  top: 30vmin;
+}
+
+.ttt-status.ttt-ongoing {
+  display: none;
+}
+
+.ttt-status.ttt-draw,
+.ttt-status.ttt-win-x,
+.ttt-status.ttt-win-o {
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  width: 100vw;
+  background-color: hsla(0,0%,0%,0.8);
+}
+
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  height: calc(100vmin - 5rem);
+  width: calc(100vmin - 5rem);
+  margin: 0;
+  padding: 1em;
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 0.5rem;
+}
+
+td {
+  font-size: 28vmin;
+  border: 1px solid white;
+  line-height: 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+footer {
+  text-align: center;
+  position: absolute;
+  padding-top: 0.5rem;
+  bottom: 0;
+  left: 0;
+  line-height: 2;
+  right: 0;
+}
+
+a {
+  color: white;
+}
+
+.social-buttons {
+  display: inline-block;
+  vertical-align: sub;
+}
