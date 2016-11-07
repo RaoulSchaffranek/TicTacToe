@@ -7997,8 +7997,8 @@ var _raoulschaffranek$tictactoe$Main$winner = function (history) {
 var _raoulschaffranek$tictactoe$Main$Pick = function (a) {
 	return {ctor: 'Pick', _0: a};
 };
-var _raoulschaffranek$tictactoe$Main$viewField = F2(
-	function (p, history) {
+var _raoulschaffranek$tictactoe$Main$viewField = F3(
+	function (p, title$, history) {
 		var player = _elm_lang$core$List$head(
 			A2(
 				_elm_lang$core$List$filter,
@@ -8007,29 +8007,59 @@ var _raoulschaffranek$tictactoe$Main$viewField = F2(
 					return _elm_lang$core$Native_Utils.eq(_p24._1, p);
 				},
 				_raoulschaffranek$tictactoe$Main$who(history)));
-		var symbol = function () {
-			var _p25 = player;
-			if (_p25.ctor === 'Nothing') {
-				return '﻿';
+		var _p25 = player;
+		if (_p25.ctor === 'Nothing') {
+			return A2(
+				_elm_lang$html$Html$td,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$title(
+						A2(_elm_lang$core$Basics_ops['++'], title$, ': free'))
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$button,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Events$onClick(
+								_raoulschaffranek$tictactoe$Main$Pick(p)),
+								_elm_lang$html$Html_Attributes$title(title$),
+								_elm_lang$html$Html_Attributes$class('ttt-field-button')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text(
+								A2(_elm_lang$core$Basics_ops['++'], 'Pick ', title$))
+							]))
+					]));
+		} else {
+			if (_p25._0._0.ctor === 'X') {
+				return A2(
+					_elm_lang$html$Html$td,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$title(
+							A2(_elm_lang$core$Basics_ops['++'], title$, ': X'))
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('✕')
+						]));
 			} else {
-				if (_p25._0._0.ctor === 'X') {
-					return '✕';
-				} else {
-					return '⭘';
-				}
+				return A2(
+					_elm_lang$html$Html$td,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$title(
+							A2(_elm_lang$core$Basics_ops['++'], title$, ': O'))
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('⭘')
+						]));
 			}
-		}();
-		return A2(
-			_elm_lang$html$Html$td,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Events$onClick(
-					_raoulschaffranek$tictactoe$Main$Pick(p))
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text(symbol)
-				]));
+		}
 	});
 var _raoulschaffranek$tictactoe$Main$Reset = {ctor: 'Reset'};
 var _raoulschaffranek$tictactoe$Main$viewWinner = function (history) {
@@ -8038,11 +8068,13 @@ var _raoulschaffranek$tictactoe$Main$viewWinner = function (history) {
 		return _elm_lang$core$Native_Utils.eq(
 			_elm_lang$core$List$length(history),
 			9) ? A2(
-			_elm_lang$html$Html$div,
+			_elm_lang$html$Html$button,
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html_Events$onClick(_raoulschaffranek$tictactoe$Main$Reset),
-					_elm_lang$html$Html_Attributes$class('ttt-status ttt-draw')
+					_elm_lang$html$Html_Attributes$class('ttt-status ttt-draw'),
+					_elm_lang$html$Html_Attributes$title('start new game'),
+					_elm_lang$html$Html_Attributes$autofocus(true)
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
@@ -8066,11 +8098,13 @@ var _raoulschaffranek$tictactoe$Main$viewWinner = function (history) {
 		var _p27 = _p26._0;
 		if (_p27.ctor === 'X') {
 			return A2(
-				_elm_lang$html$Html$div,
+				_elm_lang$html$Html$button,
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_elm_lang$html$Html_Events$onClick(_raoulschaffranek$tictactoe$Main$Reset),
-						_elm_lang$html$Html_Attributes$class('ttt-status ttt-win-x')
+						_elm_lang$html$Html_Attributes$class('ttt-status ttt-win-x'),
+						_elm_lang$html$Html_Attributes$title('start new game'),
+						_elm_lang$html$Html_Attributes$autofocus(true)
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
@@ -8085,11 +8119,13 @@ var _raoulschaffranek$tictactoe$Main$viewWinner = function (history) {
 					]));
 		} else {
 			return A2(
-				_elm_lang$html$Html$div,
+				_elm_lang$html$Html$button,
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_elm_lang$html$Html_Events$onClick(_raoulschaffranek$tictactoe$Main$Reset),
-						_elm_lang$html$Html_Attributes$class('ttt-status ttt-win-o')
+						_elm_lang$html$Html_Attributes$class('ttt-status ttt-win-o'),
+						_elm_lang$html$Html_Attributes$title('start new game'),
+						_elm_lang$html$Html_Attributes$autofocus(true)
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
@@ -8131,17 +8167,20 @@ var _raoulschaffranek$tictactoe$Main$view = function (history) {
 									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
-										A2(
+										A3(
 										_raoulschaffranek$tictactoe$Main$viewField,
 										{ctor: '_Tuple2', _0: 0, _1: 0},
+										'top left',
 										history),
-										A2(
+										A3(
 										_raoulschaffranek$tictactoe$Main$viewField,
 										{ctor: '_Tuple2', _0: 1, _1: 0},
+										'top center',
 										history),
-										A2(
+										A3(
 										_raoulschaffranek$tictactoe$Main$viewField,
 										{ctor: '_Tuple2', _0: 2, _1: 0},
+										'top right',
 										history)
 									])),
 								A2(
@@ -8150,17 +8189,20 @@ var _raoulschaffranek$tictactoe$Main$view = function (history) {
 									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
-										A2(
+										A3(
 										_raoulschaffranek$tictactoe$Main$viewField,
 										{ctor: '_Tuple2', _0: 0, _1: 1},
+										'middle left',
 										history),
-										A2(
+										A3(
 										_raoulschaffranek$tictactoe$Main$viewField,
 										{ctor: '_Tuple2', _0: 1, _1: 1},
+										'middle center',
 										history),
-										A2(
+										A3(
 										_raoulschaffranek$tictactoe$Main$viewField,
 										{ctor: '_Tuple2', _0: 2, _1: 1},
+										'middle right',
 										history)
 									])),
 								A2(
@@ -8169,17 +8211,20 @@ var _raoulschaffranek$tictactoe$Main$view = function (history) {
 									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
-										A2(
+										A3(
 										_raoulschaffranek$tictactoe$Main$viewField,
 										{ctor: '_Tuple2', _0: 0, _1: 2},
+										'bottom left',
 										history),
-										A2(
+										A3(
 										_raoulschaffranek$tictactoe$Main$viewField,
 										{ctor: '_Tuple2', _0: 1, _1: 2},
+										'bottom center',
 										history),
-										A2(
+										A3(
 										_raoulschaffranek$tictactoe$Main$viewField,
 										{ctor: '_Tuple2', _0: 2, _1: 2},
+										'bottom right',
 										history)
 									]))
 							]))
