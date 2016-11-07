@@ -94,44 +94,47 @@ view history =
     , table []
       [ tbody []
         [tr []
-          [viewField (0,0) history
-          ,viewField (1,0) history
-          ,viewField (2,0) history]
+          [viewField (0,0) "top left" history
+          ,viewField (1,0) "top center" history
+          ,viewField (2,0) "top right" history]
         ,tr []
-          [viewField (0,1) history
-          ,viewField (1,1) history
-          ,viewField (2,1) history]
+          [viewField (0,1) "middle left" history
+          ,viewField (1,1) "middle center" history
+          ,viewField (2,1) "middle right" history]
         ,tr []
-          [viewField (0,2) history
-          ,viewField (1,2) history
-          ,viewField (2,2) history]]]]
+          [viewField (0,2) "bottom left" history
+          ,viewField (1,2) "bottom center" history
+          ,viewField (2,2) "bottom right" history]]]]
 
 
-viewField : Point -> History -> Html Msg
-viewField p history =
+viewField : Point -> String -> History -> Html Msg
+viewField p title' history =
   let
     player =
       List.head (List.filter (\(player, p') -> p' == p) (who history))
-    symbol = case player of
-      Nothing    -> "\xFEFF"
-      Just (X,_) -> "✕"
-      Just (O,_) -> "⭘"
   in
-    td [onClick (Pick p)] [text symbol]
-
+    case player of
+      Nothing     ->
+        td [title (title' ++ ": free")]
+          [button [onClick (Pick p), title title', class "ttt-field-button"]
+            [text ("Pick " ++ title')]]
+      Just (X, _) ->
+        td [title (title' ++ ": X")] [text "✕"]
+      Just (O, _) ->
+        td [title (title' ++ ": O")] [text "⭘"]
 
 viewWinner : History -> Html Msg
 viewWinner history =
   case winner history of
     Nothing -> if List.length history == 9
-      then div
-        [onClick Reset, class "ttt-status ttt-draw"]
+      then button
+        [onClick Reset, class "ttt-status ttt-draw", title "start new game", autofocus True]
         [h1 [] [text "⚔ draw ⚔"]]
       else div [class "ttt-status ttt-ongoing"] []
     Just player -> case player of
-      X -> div
-        [onClick Reset, class "ttt-status ttt-win-x"]
+      X -> button
+        [onClick Reset, class "ttt-status ttt-win-x", title "start new game", autofocus True]
         [h1 [] [text "👑 ✕ wins 👑"]]
-      O -> div
-        [onClick Reset, class "ttt-status ttt-win-o"]
+      O -> button
+        [onClick Reset, class "ttt-status ttt-win-o", title "start new game", autofocus True]
         [h1 [] [text "👑 ⭘ wins 👑"]]
