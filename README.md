@@ -1,5 +1,5 @@
 # TicTacToe
-The popular TicTacToe game, written in Elm.
+The popular TicTacToe game, written in Elm. [Play it!](https://raoulschaffranek.github.io/TicTacToe/)
 
 ### Compiling
 
